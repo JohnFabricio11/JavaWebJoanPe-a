@@ -10,7 +10,6 @@ import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -38,19 +37,15 @@ public class Login implements Serializable{
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    public void addMessage() {
+    public void add() {
         FacesMessage message;
-        boolean login =false;
         if(usuario.equals("Joan") && contrasena.equals("1234")){
-            login=true;
-            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", usuario);        
-        }else{
-            login=false;
-            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos Incorrectos","");  
+            message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido","");
+        }
+        else{
+            message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos Incorrectos","");
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
-        PrimeFaces.current().ajax().addCallbackParam("login", login);
         
     }
 }
-
