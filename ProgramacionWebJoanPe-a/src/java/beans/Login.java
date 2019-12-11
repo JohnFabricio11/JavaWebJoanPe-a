@@ -37,15 +37,18 @@ public class Login implements Serializable{
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    public void add() {
+    public String add() {
+        String url=null;
         FacesMessage message;
         if(usuario.equals("Joan") && contrasena.equals("1234")){
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido","");
+            url="/pagina_cliente2.xhtml?faces-redirect=true";
         }
         else{
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos Incorrectos","");
         }
         FacesContext.getCurrentInstance().addMessage(null, message);
-        
+      return url;  
     }
+    
 }
