@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./Plantilla2.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+
+    <ui:define name="top">
+        
+        <h:form>
+            
+            <p:growl>
+                <p:autoUpdate/>
+            </p:growl>
+            <p:inputText id="usuario" value="#{login.usuario}" required="true">
+
+            </p:inputText>
+            <p>
+                <p:password id="contrasena" value="#{login.contrasena}" required="true"></p:password>>  
+            </p>
+            <p:commandButton value="Aceptar" action="#{login.addMessage}"/>
+            <p:dialog header="Login" widgetVar="login">
+                <p:outputLabel></p:outputLabel>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="content">
+        <h:form>
+            <p:growl>
+                <p:autoUpdate/>
+            </p:growl>
+
+            <p:signature style="width:400px;height:200px" widgetVar="sig" value="#{firma.value}" required="true" guideline="true"/>
+
+            <div style="margin:20px">
+
+                <p:commandButton value="Aceptar"  update="salida"/>
+                <p:commandButton value="Limpiar"  type="button" onclick="PF('sig').clear()"/>
+
+            </div>
+            <p:outputPanel id="salida">
+                <h:outputText rendered="#{not empty firma.value}" style="font-size:24px;display:block" value="Tu Firmisima" />
+                <p:signature style="width:400px;height:200px;" value="#{firma.value}" readonly="true"
+                             rendered="#{not empty firma.value}" backgroundColor="#eaeaea" color="#03a9f4"/>
+            </p:outputPanel>
+        </h:form>
+    </ui:define>
+
+    <ui:define name="bottom">
+        <p:editor id="editor" widgetVar="editorWidget"  width="600" />
+    </ui:define>
+
+</ui:composition>

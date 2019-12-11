@@ -5,24 +5,28 @@
  */
 package beans;
 
-import javax.faces.bean.RequestScoped;
+import java.io.Serializable;
 import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author usuario
  */
-@Named
+@Named(value = "firma")
 @RequestScoped
-public class signature {
-     
-    private String value;
- 
+public class Firma implements Serializable{
+ private String value;
+
     public String getValue() {
+        System.out.println(value);
         return value;
     }
- 
+
     public void setValue(String value) {
         this.value = value;
     }
+    public Firma() {
+    }
+    
 }
