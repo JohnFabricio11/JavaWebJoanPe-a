@@ -42,7 +42,7 @@ public class Login implements Serializable{
         FacesMessage message;
         if(usuario.equals("Joan") && contrasena.equals("1234")){
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido","");
-            url="/pagina_cliente2.xhtml?faces-redirect=true";
+            url="pagina_cliente2?faces-redirect=true";
         }
         else{
             message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Datos Incorrectos","");
