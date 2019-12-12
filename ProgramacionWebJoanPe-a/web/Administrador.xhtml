@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./plantillaAdmin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="top">
+         <h:form>     
+        <p:toolbar>
+            <f:facet name="left">
+                <p:commandButton type="button" value="Nuevo Admin" icon="pi pi-file" />
+                <p:commandButton type="button" value="Cambiar Roles" icon="pi pi-folder-open" />
+            </f:facet>
+
+            <f:facet name="right">
+                <p:menuButton value="Opciones">
+                    <p:menuitem value="Salir"/>
+                    <p:menuitem value="Cerrar Sesion" />
+                    <p:menuitem value="Prime Faces" url="http://www.primefaces.org"/>
+                </p:menuButton>
+            </f:facet>
+        </p:toolbar>
+    </h:form>
+    </ui:define>
+   
+    <ui:define name="content">
+
+    </ui:define>
+
+    <ui:define name="bottom">
+
+    </ui:define>
+
+</ui:composition>

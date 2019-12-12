@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author usuario
  */
-@WebFilter("*.xhtml")
+//@WebFilter("*.xhtml")
 public class URLFilter implements Filter {
 
     private static final boolean debug = true;
@@ -96,7 +96,7 @@ public class URLFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest serverResquest = (HttpServletRequest) request;
+    /*    HttpServletRequest serverResquest = (HttpServletRequest) request;
         HttpServletResponse serverResponse = (HttpServletResponse) response;
         boolean logeo = false;
         boolean redireccionar = true;
@@ -115,6 +115,7 @@ public class URLFilter implements Filter {
         } else {
             chain.doFilter(request, response);
         }
+        */
     }
 
     public FilterConfig getFilterConfig() {
