@@ -1,5 +1,6 @@
 package beans;
 
+import Modelos.Roles;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -13,12 +14,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author usuario
  */
-//@WebFilter("*.xhtml")
+@WebFilter("*.xhtml")
 public class URLFilter implements Filter {
 
     private static final boolean debug = true;
@@ -96,12 +98,23 @@ public class URLFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-       /* HttpServletRequest serverResquest = (HttpServletRequest) request;
+        HttpServletRequest serverRequest = (HttpServletRequest) request;
         HttpServletResponse serverResponse = (HttpServletResponse) response;
         boolean logeo = false;
         boolean redireccionar = true;
-        String pag[] = {"/sga/Cliente.xhtml", "/sga/welcomePrimeFaces.xhtml"};
-        if (logeo) {
+        String pag[] = {"/sga/Login.xhtml", "/sga/welcomePrimeFaces.xhtml","/sga/Administrador.xhtml"};
+        HttpSession sesion=serverRequest.getSession(true);
+        Roles user = (Roles) sesion.getAttribute("usuario");
+        if(user!=null){
+            chain.doFilter(request, response);
+        }else{
+             for (String item : pag) {
+                if (serverRequest.getRequestURI().contains(item)) {
+                    redireccionar = false;
+                }
+            }
+        }
+        /*if (logeo) {
             chain.doFilter(request, response);
         } else {
             for (String item : pag) {
@@ -110,12 +123,12 @@ public class URLFilter implements Filter {
                 }
             }
         }
-        if (redireccionar) {
-            serverResponse.sendRedirect(serverResquest.getContextPath() + "/sga/Cliente.xhtml");
+       */ if (redireccionar) {
+            serverResponse.sendRedirect(serverRequest.getContextPath() + "/sga/Login.xhtml");
         } else {
             chain.doFilter(request, response);
         }
-*/
+
     }
 
     public FilterConfig getFilterConfig() {
