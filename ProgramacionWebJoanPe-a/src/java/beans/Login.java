@@ -9,8 +9,8 @@ import Modelos.Roles;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -61,7 +61,7 @@ public class Login implements Serializable{
         for (Roles roles : rol) {
             if(usuario.equals(roles.getNombre()) && contrasena.equals(roles.getPassword())){
                 HttpSession sesion=(HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-                sesion.setAttribute("JOAN", roles);
+                sesion.setAttribute("usuario", roles);
                 if(roles.getRol()==1){
                     url="Administrador.xhtml?faces-redirect=true";
                 }else if(roles.getRol()==2){
