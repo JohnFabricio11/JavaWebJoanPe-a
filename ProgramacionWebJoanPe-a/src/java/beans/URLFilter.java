@@ -1,6 +1,6 @@
 package beans;
 
-import Modelos.Roles;
+import Utilidades.Roles;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
@@ -101,7 +101,7 @@ public class URLFilter implements Filter {
         HttpServletRequest serverRequest = (HttpServletRequest) request;
         HttpServletResponse serverResponse = (HttpServletResponse) response;
         boolean logeo = false;
-        boolean redireccionar = true;
+        boolean redireccionar = false;
         String pag[] = {"/sga/Login.xhtml", "/sga/welcomePrimeFaces.xhtml","/sga/Administrador.xhtml"};
         HttpSession sesion=serverRequest.getSession(true);
         Roles user = (Roles) sesion.getAttribute("usuario");
