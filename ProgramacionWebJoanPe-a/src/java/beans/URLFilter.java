@@ -102,20 +102,13 @@ public class URLFilter implements Filter {
         HttpServletResponse serverResponse = (HttpServletResponse) response;
         boolean logeo = false;
         boolean redireccionar = true;
-        String pag[] = {"/sga/Login.xhtml"};
-        String login[]={"/sga/Administrador.xhtml"};
-        HttpSession sesion = serverRequest.getSession(true);
+        String pag[] = {"/sga/Login.xhtml", "/sga/welcomePrimeFaces.xhtml","/sga/Administrador.xhtml"};
+        HttpSession sesion=serverRequest.getSession(true);
         Roles user = (Roles) sesion.getAttribute("usuario");
-        if (user != null) {
-            if(user.getRol()==1){
-               for (String entrarLogin : login) {
-                if (serverRequest.getRequestURI().contains(entrarLogin)) {
-                    redireccionar = false;
-                }
-            }  
-            }
-        } else {
-            for (String item : pag) {
+        if(user!=null){
+            chain.doFilter(request, response);
+        }else{
+             for (String item : pag) {
                 if (serverRequest.getRequestURI().contains(item)) {
                     redireccionar = false;
                 }
@@ -130,7 +123,7 @@ public class URLFilter implements Filter {
                 }
             }
         }
-         */ if (redireccionar) {
+       */ if (redireccionar) {
             serverResponse.sendRedirect(serverRequest.getContextPath() + "/sga/Login.xhtml");
         } else {
             chain.doFilter(request, response);
@@ -142,6 +135,11 @@ public class URLFilter implements Filter {
         return (this.filterConfig);
     }
 
+    /**
+     * Set the filter configuration object for this filter.
+     *
+     * @param filterConfig The filter configuration object
+     */
     public void setFilterConfig(FilterConfig filterConfig) {
         this.filterConfig = filterConfig;
     }
