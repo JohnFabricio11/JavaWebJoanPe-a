@@ -69,6 +69,13 @@ public class AutorFacadeREST extends AbstractFacade<Autor> {
         return super.findAll();
     }
 
+    @POST
+    @Path("post")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
+    public List<Autor> obtnerTodos() {
+        return super.findAll();
+    }
+
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -87,5 +94,5 @@ public class AutorFacadeREST extends AbstractFacade<Autor> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }
