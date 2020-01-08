@@ -71,7 +71,7 @@ public class AutorFacadeREST extends AbstractFacade<Autor> {
 
     @POST
     @Path("post")
-    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Autor> obtnerTodos() {
         return super.findAll();
     }
