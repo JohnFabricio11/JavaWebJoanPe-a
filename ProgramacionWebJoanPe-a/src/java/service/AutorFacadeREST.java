@@ -12,6 +12,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -74,6 +75,43 @@ public class AutorFacadeREST extends AbstractFacade<Autor> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Autor> obtnerTodos() {
         return super.findAll();
+    }
+    @POST
+    @Path("obtenerAutor")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Autor obtnerAutor(@FormParam("id_autor") Integer id){
+        return super.find(id);
+    }
+    @POST
+    @Path("Crear")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String crearAutor(@FormParam("id_autor") Integer id,@FormParam("nombreAutor") String nombre){
+        Autor autor = new Autor();
+            autor.setIdAutor(id);
+            autor.setNombreAutor(nombre);
+            super.create(autor);
+        return "Creado";
+    }
+    @POST
+    @Path("edit")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String editAutor(@FormParam("id_autor") Integer id,@FormParam("nombreAutor") String nombre){
+        Autor autor;
+            autor = super.find(id);
+            autor.setIdAutor(id);
+            autor.setNombreAutor(nombre);
+            super.edit(autor);
+        return "editado";
+    }
+    @POST
+    @Path("delete")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public String deleteAutor(@FormParam("id_autor") Integer id){
+        Autor autor;
+            autor = super.find(id);
+            autor.setIdAutor(id);
+            super.remove(autor);
+        return "eliminado";
     }
 
     @GET
